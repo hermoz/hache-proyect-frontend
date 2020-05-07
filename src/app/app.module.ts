@@ -5,12 +5,12 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TokenStorageComponent } from './services/token-storage/token-storage.component';
+
+import { authInterceptorProviders } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TokenStorageComponent
   ],
   imports: [
     BrowserModule,
@@ -18,7 +18,7 @@ import { TokenStorageComponent } from './services/token-storage/token-storage.co
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
