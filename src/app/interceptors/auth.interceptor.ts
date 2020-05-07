@@ -7,7 +7,8 @@ import { TokenStorageService } from '../services/token-storage.service';
 const TOKEN_HEADER_KEY = 'Authorization';
 
 /**
- * HttpInterceptor has intercept() method to inspect and transform HTTP requests before they are sent to server
+ * HttpInterceptor has intercept() method to inspect and transform HTTP requests before they are sent to server.
+ * We retrieve the token from the authentication service and set it on the request clone.
  */
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
