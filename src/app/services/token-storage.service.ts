@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import * as jwt_decode from 'jwt-decode';
 
 /**
  * This service manages token and user information
@@ -29,7 +30,9 @@ export class TokenStorageService {
     return sessionStorage.getItem(TOKEN_KEY);
   }
 
-  public saveUser(user) {
+  public saveUserFromToken(token: string) {
+    const decoded = jwt_decode(token);
+    const user = decoded.user;
     window.sessionStorage.removeItem(USER_KEY);
     window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
   }
@@ -38,5 +41,18 @@ export class TokenStorageService {
     return JSON.parse(sessionStorage.getItem(USER_KEY));
   }
 
+  public getRoles() {
+    return this.getUser().roles;
+  }
+
+  public getPrivileges(): Set<string> {
+    const privileges = new Set<string>();
+    for (const role of this.getRoles()) {
+      for (const privilege of role.privileges) {
+        privileges.add(privilege);
+      }
+    }
+    return privileges;
+  }
 
 }
