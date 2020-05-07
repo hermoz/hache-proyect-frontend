@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 
 import { authInterceptorProviders } from './interceptors/auth.interceptor';
 import { LoginComponent } from './components/login/login.component';
+import { errorInterceptorProviders } from './interceptors/error.interceptor';
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,11 @@ import { LoginComponent } from './components/login/login.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [authInterceptorProviders],
+  providers: [
+    authInterceptorProviders,
+    AuthGuard, 
+    authInterceptorProviders],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
