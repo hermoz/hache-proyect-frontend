@@ -31,6 +31,8 @@ export class LoginComponent implements OnInit {
       this.roles = this.tokenStorageService.getRoles();
       this.privileges = this.tokenStorageService.getPrivileges();
       this.username = this.tokenStorageService.getUser().username;
+
+      this.redirectToHome();
     }
   }
 
@@ -45,7 +47,8 @@ export class LoginComponent implements OnInit {
         this.roles = this.tokenStorageService.getRoles();
         this.privileges = this.tokenStorageService.getPrivileges();
         this.username = this.tokenStorageService.getUser().username;
-        this.reloadPage();
+         // redirect home after successfull login
+        this.redirectToHome();
       },
       err => {
         this.errorMessage = err.error.message;
@@ -54,7 +57,7 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  reloadPage() {
-    window.location.reload();
-  }
+  redirectToHome() {
+    location.href = '/';
+  }	  
 }
