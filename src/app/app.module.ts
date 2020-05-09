@@ -10,11 +10,13 @@ import { authInterceptorProviders } from './interceptors/auth.interceptor';
 import { LoginComponent } from './components/login/login.component';
 import { errorInterceptorProviders } from './interceptors/error.interceptor';
 import { AuthGuard } from './guards/auth.guard';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,7 +27,7 @@ import { AuthGuard } from './guards/auth.guard';
   providers: [
     authInterceptorProviders,
     AuthGuard, 
-    authInterceptorProviders],
+    errorInterceptorProviders],
 
   bootstrap: [AppComponent]
 })
