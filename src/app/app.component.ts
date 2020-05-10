@@ -18,6 +18,10 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
 
+    /**
+     * First check isLoggedIn status using TokenStorageService
+     * In case it is true: we get User´s username,role and privileges
+     */
     if (this.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
       this.username = user.username;
@@ -26,6 +30,9 @@ export class AppComponent implements OnInit {
     }
   }
 
+  /**
+   * Log out from app and reloading page
+   */
   logout() {
     this.tokenStorageService.signOut();
     // TODO: We should redirect to home instead reload?

@@ -1,0 +1,19 @@
+<!-- Homepage design welcoming user 
+    In case user is loggein or not we have different displays -->
+<div class="alert alert-success text-center" *ngIf="isLoggedIn">
+    Welcome {{ username }}
+</div>
+<div class="jumbotron text-center">
+    <h1 class="display-4">Architecture Studio Management</h1>
+    <p class="lead">
+        This is a web application that allows you to manage the users, clients and projects of your architecture studio
+    </p>
+    <div *ngIf="!isLoggedIn">
+        <hr class="my-4">
+        <p>To perform actions you need to log in</p>
+        <!-- Button to access login form to access the app -->
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="/login" role="button">Go to Login page</a>
+        </p>
+    </div>
+</div>
