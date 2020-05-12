@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from './services/token-storage.service';
+import { Router } from '@angular/router';
 import { READ_CUSTOMERS, READ_USERS, READ_PROJECTS } from './constants';
 
 @Component({
@@ -20,7 +21,7 @@ export class AppComponent implements OnInit {
   canShowProjectsSection = false;
   canShowCustomersSection = false;
 
-  constructor(private tokenStorageService: TokenStorageService) { }
+  constructor(private tokenStorageService: TokenStorageService, private router: Router) { }
 
   ngOnInit() {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
@@ -47,6 +48,6 @@ export class AppComponent implements OnInit {
   logout() {
     this.tokenStorageService.signOut();
     // TODO: We should redirect to home instead reload?
-    location.reload();
+    this.router.navigateByUrl('');
   }
 }
