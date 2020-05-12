@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { API_AUTH_ENDPOINT_URL } from '../constants';
+import { API_AUTH_ENDPOINT_URL, API_HTTP_OPTIONS } from '../constants';
 
 
 const httpOptions = {
@@ -24,7 +24,7 @@ export class AuthService {
     return this.http.post(API_AUTH_ENDPOINT_URL, {
       username: credentials.username,
       password: credentials.password
-    }, httpOptions);
+    }, API_HTTP_OPTIONS);
   }
 
 }
