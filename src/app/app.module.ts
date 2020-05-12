@@ -11,12 +11,14 @@ import { LoginComponent } from './components/login/login.component';
 import { errorInterceptorProviders } from './interceptors/error.interceptor';
 import { AuthGuard } from './guards/auth.guard';
 import { HomeComponent } from './components/home/home.component';
+import { UsersComponent } from './components/users/users.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
+    UsersComponent,
   ],
   imports: [
     BrowserModule,
