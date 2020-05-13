@@ -26,9 +26,22 @@ export class UsersService {
       );
   }
 
+  /**
+   * Get users by id using pipe and registering operations
+   * @param id 
+   */
+  getUser(id: number): Observable<UserDto> {
+    const url = `${API_USERS_ENDPOINT_URL}/${id}`;
+    return this.http.get<UserDto>(url)
+      .pipe(
+        tap(user => console.log(`fetched user with id ${id}`)),
+        catchError(this.handleError)
+      );
+  }
+
     /**
      * Delete user by id calls HttpClient.delete.
-     * The URL is the URL of the hero resource plus the hero id to delete
+     * The URL is the URL of the user plus user id
      * (we keep sending httpOptions)
      * @param id 
      */
@@ -37,6 +50,29 @@ export class UsersService {
     const url = `${API_USERS_ENDPOINT_URL}/${id}`;
     return this.http.delete<any>(url, API_HTTP_OPTIONS).pipe(
       tap(_ => console.log(`deleted user with id=${id}`)),
+      catchError(this.handleError)
+    );
+  }
+  
+  /**
+   * Update User - http.post to persist created user on server
+   * @param user 
+   */
+  createUser(user: UserDto): Observable<any> {
+    return this.http.post(API_USERS_ENDPOINT_URL, user, API_HTTP_OPTIONS).pipe(
+      tap(newUser => console.log(`user created successfully: ${newUser}`)),
+      catchError(this.handleError)
+    );
+  }
+
+  /**
+   * Update User - http.put to persist modified user on server
+   * @param user 
+   */
+  updateUser(user: UserDto): Observable<any> {
+    const url = `${API_USERS_ENDPOINT_URL}`;
+    return this.http.put(url, user, API_HTTP_OPTIONS).pipe(
+      tap(updatedUser => console.log(`user updated successfully: ${updatedUser}`)),
       catchError(this.handleError)
     );
   }
