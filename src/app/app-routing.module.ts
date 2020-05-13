@@ -7,7 +7,8 @@ import { HomeComponent } from './components/home/home.component';
 import { UsersDetailComponent } from './components/users-detail/users-detail.component';
 import { UsersComponent } from './components/users/users.component';
 import { AuthGuard } from './guards/auth.guard';
-import { READ_USERS } from './constants';
+import { READ_USERS, CREATE_USERS } from './constants';
+
 
 
 const routes: Routes = [
@@ -20,7 +21,12 @@ const routes: Routes = [
     data: { requiredPrivileges: [ READ_USERS ] },
     canActivate: [AuthGuard]
   },
-
+  {
+    path: 'users/new',
+    component: UsersDetailComponent,
+    data: { requiredPrivileges: [ CREATE_USERS ] },
+    canActivate: [AuthGuard]
+  },
   {
   path: 'users/:id',
     component: UsersDetailComponent,
