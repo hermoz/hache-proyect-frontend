@@ -67,4 +67,6 @@ export class LoginComponent implements OnInit {
     const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
     // we use this instead a router navigate, because we want force reload of entire url
     location.href = returnUrl;
+  }
+
 }

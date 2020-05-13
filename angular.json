@@ -27,7 +27,10 @@
                             "src/assets/css/bootstrap/bootstrap.min.css",
                             "src/assets/css/styles.css"
                         ],
-                        "scripts": []
+                        "scripts": [
+                            "src/assets/js/jquery/jquery-3.4.1.slim.min.js",
+                            "src/assets/js/bootstrap/bootstrap.min.js"
+                        ]
                     },
                     "configurations": {
                         "production": {
@@ -89,7 +92,10 @@
                             "src/assets/css/bootstrap/bootstrap.min.css",
                             "src/assets/css/styles.css"
                         ],
-                        "scripts": []
+                        "scripts": [
+                            "src/assets/js/jquery/jquery-3.4.1.slim.min.js",
+                            "src/assets/js/bootstrap/bootstrap.min.js"
+                        ]
                     }
                 },
                 "lint": {
