@@ -13,8 +13,19 @@ export class AuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+
       if (this.tokenStorageService.getUser()) {
-        // logged in so return true
+        const requiredPrivileges: Array<string> = next.data.requiredPrivileges || [];
+        const userPrivileges = this.tokenStorageService.getPrivileges();
+
+        for (const requiredPrivilege of requiredPrivileges) {
+          if (!userPrivileges.has(requiredPrivilege)) {
+            this.router.navigate(['']);
+            return false;
+          }
+        }
+
+        // logged in and it has the required privileges, so return true
         return true;
     }
 

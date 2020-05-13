@@ -2,14 +2,14 @@
     <nav class="navbar navbar-expand navbar-dark bg-dark">
         <a href="#" class="navbar-brand">Architecture Studio</a>
         <ul class="navbar-nav mr-auto" routerLinkActive="active">
-            <li class="nav-item">
-                <a href="#" class="nav-link">Section1</a>
+            <li class="nav-item" *ngIf="canShowUsersSection">
+                <a href="/users" class="nav-link">Users</a>
             </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">Section2</a>
+            <li class="nav-item" *ngIf="canShowProjectsSection">
+                <a href="/projects" class="nav-link">Projects</a>
             </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">Section3</a>
+            <li class="nav-item" *ngIf="canShowCustomersSection">
+                <a href="/customers" class="nav-link">Customers</a>
             </li>
         </ul>
 
@@ -22,11 +22,11 @@
         <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
             <li class="nav-item">
                 <a class="nav-link">
-          Logged as: <strong>{{ username }}</strong>
-        </a>
+            Logged as: <strong>{{ username }}</strong>
+          </a>
             </li>
             <li class="nav-item">
-                <a href class="nav-link" (click)="logout()">LogOut</a>
+                <a href class="nav-link" (click)="logout()">Logout</a>
             </li>
         </ul>
     </nav>
