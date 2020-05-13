@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserDto } from '../../dtos/user-dto';
 import { UsersService } from '../../services/users.service';
 import { TokenStorageService } from '../../services/token-storage.service';
-import { DELETE_USERS } from '../../constants';
+import { DELETE_USERS, CREATE_USERS } from '../../constants';
 
 @Component({
   selector: 'app-users',
@@ -17,12 +17,15 @@ export class UsersComponent implements OnInit {
 
   users: UserDto[];
   currentUserId = null;
+
+  hasCreateUsersPrivilege = false;
   hasDeleteUsersPrivilege = false;
 
   constructor(private usersService: UsersService, private tokenStorageService: TokenStorageService) { }
 
   ngOnInit(): void {
     this.currentUserId = this.tokenStorageService.getUser().id;
+    this.hasCreateUsersPrivilege = this.tokenStorageService.getPrivileges().has(CREATE_USERS);
     this.hasDeleteUsersPrivilege = this.tokenStorageService.getPrivileges().has(DELETE_USERS);
     this.getUsers();
   }

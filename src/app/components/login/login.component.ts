@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { TokenStorageService } from '../../services/token-storage.service';
+import { ActivatedRoute } from '@angular/router';
 
 /**
  * Login Componentuses AuthService to work with Observable object. 
@@ -23,7 +24,11 @@ export class LoginComponent implements OnInit {
   privileges: Set<string> = new Set([]);
   username: string;
 
-  constructor(private authService: AuthService, private tokenStorageService: TokenStorageService) { }
+  constructor(
+    private authService: AuthService,
+    private tokenStorageService: TokenStorageService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
     if (this.tokenStorageService.getToken()) {
@@ -31,6 +36,7 @@ export class LoginComponent implements OnInit {
       this.roles = this.tokenStorageService.getRoles();
       this.privileges = this.tokenStorageService.getPrivileges();
       this.username = this.tokenStorageService.getUser().username;
+      this.redirectToNextURL();
 
       this.redirectToHome();
     }
@@ -47,8 +53,8 @@ export class LoginComponent implements OnInit {
         this.roles = this.tokenStorageService.getRoles();
         this.privileges = this.tokenStorageService.getPrivileges();
         this.username = this.tokenStorageService.getUser().username;
-         // redirect home after successfull login
-        this.redirectToHome();
+        // redirect next or home
+        this.redirectToNextURL();
       },
       err => {
         this.errorMessage = err.error.message;
@@ -57,7 +63,8 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  redirectToHome() {
-    location.href = '/';
-  }	  
+  redirectToNextURL() {
+    const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
+    // we use this instead a router navigate, because we want force reload of entire url
+    location.href = returnUrl;
 }
