@@ -1,6 +1,6 @@
 import { RoleDto } from './role-dto';
 
-export interface UserDto {
+export class UserDto {
 
     id: number;
     username: string;
