@@ -38,7 +38,6 @@ export class LoginComponent implements OnInit {
       this.username = this.tokenStorageService.getUser().username;
       this.redirectToNextURL();
 
-      this.redirectToHome();
     }
   }
 
