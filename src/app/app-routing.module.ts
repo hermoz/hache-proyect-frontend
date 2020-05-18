@@ -7,7 +7,8 @@ import { HomeComponent } from './components/home/home.component';
 import { UsersDetailComponent } from './components/users-detail/users-detail.component';
 import { UsersComponent } from './components/users/users.component';
 import { AuthGuard } from './guards/auth.guard';
-import { READ_USERS, CREATE_USERS } from './constants';
+import { READ_USERS, CREATE_USERS, READ_PROJECTS } from './constants';
+import { ProjectsComponent } from './components/projects/projects.component';
 
 
 
@@ -33,7 +34,12 @@ const routes: Routes = [
     data: { requiredPrivileges: [ READ_USERS ] },
     canActivate: [AuthGuard]
   },
-
+  {
+    path: 'projects',
+    component: ProjectsComponent,
+    data: { requiredPrivileges: [ READ_PROJECTS ] },
+    canActivate: [AuthGuard]
+  },
   // routes that dont exists, we redirect to home
   { path: '**', redirectTo: '' }
 ];

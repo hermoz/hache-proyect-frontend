@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="col-12 text-center">
+        <h3>Projects List</h3>
+    </div>
+    <!-- New Project Button in case user has the privilege -->
+    <div class="col-12" *ngIf="hasCreateProjectsPrivilege">
+        <a class="btn btn-outline btn-dark float-left" href="/projects/new" role="button">New Project</a>
+    </div>
+
+    <!-- Table to show general project information -->
+    <div class="col-12 mt-3">
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th *ngFor="let column of columns" class="text-capitalize" scope="col">{{ column }}</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let project of projects">
+                    <td class="align-middle">
+                        {{ project.id }}
+                    </td>
+
+                    <td class="align-middle">
+                        {{ project.title }}
+                    </td>
+
+                    <td class="align-middle">
+                        {{ project.type.name }}
+                    </td>
+
+                    <td class="align-middle">
+                        {{ project.location }}
+                    </td>
+
+                    <td>
+                        <!-- View Detail button is always an option -->
+                        <a class="btn btn-dark btn-sm" href="/projects/{{ project['id'] }}" role="button">View detail</a>
+
+                        <!-- Delete Project Button in case user has the privilege -->
+                        <a *ngIf="hasDeleteProjectsPrivilege" class="btn btn-danger text-white btn-sm ml-2" (click)="deleteProject(project['id'])" role="button">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

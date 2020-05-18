@@ -13,6 +13,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { HomeComponent } from './components/home/home.component';
 import { UsersComponent } from './components/users/users.component';
 import { UsersDetailComponent } from './components/users-detail/users-detail.component';
+import { ProjectsComponent } from './components/projects/projects.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { UsersDetailComponent } from './components/users-detail/users-detail.com
     HomeComponent,
     UsersComponent,
     UsersDetailComponent,
+    ProjectsComponent,
   ],
   imports: [
     BrowserModule,
