@@ -14,6 +14,7 @@ import { HomeComponent } from './components/home/home.component';
 import { UsersComponent } from './components/users/users.component';
 import { UsersDetailComponent } from './components/users-detail/users-detail.component';
 import { ProjectsComponent } from './components/projects/projects.component';
+import { CustomersComponent } from './components/customers/customers.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ProjectsComponent } from './components/projects/projects.component';
     UsersComponent,
     UsersDetailComponent,
     ProjectsComponent,
+    CustomersComponent
   ],
   imports: [
     BrowserModule,

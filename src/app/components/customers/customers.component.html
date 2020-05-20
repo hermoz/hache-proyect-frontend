@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col-12 text-center">
+        <h3>Customers List</h3>
+    </div>
+
+    <div class="col-12" *ngIf="hasCreateCustomersPrivilege">
+        <a class="btn btn-outline btn-dark float-left" href="/customers/new" role="button">New Customer</a>
+    </div>
+
+    <div class="col-12 mt-3">
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th *ngFor="let column of columns" class="text-capitalize" scope="col">{{ column }}</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let customer of customers">
+                    <td *ngFor="let column of columns" class="align-middle">
+                        {{ customer[column] }}
+                    </td>
+                    <td>
+                        <a class="btn btn-dark btn-sm" href="/customers/{{ customer['id'] }}" role="button">View detail</a>
+                        <a *ngIf="hasDeleteCustomersPrivilege" class="btn btn-danger text-white btn-sm ml-2" (click)="deleteCustomer(customer['id'])" role="button">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
