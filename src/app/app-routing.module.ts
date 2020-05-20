@@ -9,6 +9,7 @@ import { UsersComponent } from './components/users/users.component';
 import { AuthGuard } from './guards/auth.guard';
 import { READ_USERS, CREATE_USERS, READ_PROJECTS, READ_CUSTOMERS } from './constants';
 import { ProjectsComponent } from './components/projects/projects.component';
+import { CustomersComponent } from './components/customers/customers.component';
 
 
 
