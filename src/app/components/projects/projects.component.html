@@ -34,6 +34,10 @@
                         {{ project.location }}
                     </td>
 
+                    <td class="align-middle">
+                        <a href="/customers/{{ project.customer.id }}">{{ project.customer.name }}</a>
+                    </td>
+
                     <td>
                         <!-- View Detail button is always an option -->
                         <a class="btn btn-dark btn-sm" href="/projects/{{ project['id'] }}" role="button">View detail</a>

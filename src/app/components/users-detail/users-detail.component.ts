@@ -5,7 +5,7 @@ import { UserDto } from '../../dtos/user-dto';
 import { RolesService } from '../../services/roles.service';
 import { RoleDto } from '../../dtos/role-dto';
 import { TokenStorageService } from '../../services/token-storage.service';
-import { CREATE_USERS } from '../../constants';
+import { CREATE_USERS, UPDATE_USERS } from '../../constants';
 
 @Component({
   selector: 'app-users-detail',
@@ -28,6 +28,7 @@ export class UsersDetailComponent implements OnInit {
   id: number;
   textActionButton: string;
   hasCreateUsersPrivilege: boolean;
+  hasUpdateUsersPrivilege: boolean;
 
   constructor(
     private usersService: UsersService,
@@ -40,6 +41,7 @@ export class UsersDetailComponent implements OnInit {
   ngOnInit(): void {
 
     this.hasCreateUsersPrivilege = this.tokenStorageService.getPrivileges().has(CREATE_USERS);
+    this.hasUpdateUsersPrivilege = this.tokenStorageService.getPrivileges().has(UPDATE_USERS);
 
     /**
      * Method to subscribe depending ob saving or updating information

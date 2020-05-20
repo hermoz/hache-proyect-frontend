@@ -15,7 +15,7 @@ export class ProjectsComponent implements OnInit {
   hasCreateProjectsPrivilege: boolean;
   hasDeleteProjectsPrivilege: boolean;
   columns: string[] = [
-    'id', 'title', 'type', 'location'
+    'id', 'title', 'type', 'location', 'customer'
   ];
 
   constructor(private projectsService: ProjectsService, private tokenStorageService: TokenStorageService) { }

@@ -15,15 +15,15 @@
         <div class="form-row">
             <div class="form-group col-md-3">
                 <label for="username">Username</label>
-                <input [(ngModel)]="user.username" [disabled]="!hasCreateUsersPrivilege" type="text" class="form-control" id="username" name="username" placeholder="Username..." />
+                <input [(ngModel)]="user.username" [disabled]="((isNewUserPage && !hasCreateUsersPrivilege) || (isUserDetailPage && !hasUpdateUsersPrivilege))" type="text" class="form-control" id="username" name="username" placeholder="Username..." />
             </div>
             <div class="form-group col-md-6">
                 <label for="email">Email</label>
-                <input [(ngModel)]="user.email" [disabled]="!hasCreateUsersPrivilege" type="email" class="form-control" id="email" name="email" placeholder="Email..." />
+                <input [(ngModel)]="user.email" [disabled]="((isNewUserPage && !hasCreateUsersPrivilege) || (isUserDetailPage && !hasUpdateUsersPrivilege))" type="email" class="form-control" id="email" name="email" placeholder="Email..." />
             </div>
             <div class="form-group col-md-3" *ngIf="hasCreateUsersPrivilege">
                 <label for="password">Password</label>
-                <input [(ngModel)]="user.password" [disabled]="!hasCreateUsersPrivilege" type="password" class="form-control" id="password" name="password" placeholder="Password..." />
+                <input [(ngModel)]="user.password" [disabled]="((isNewUserPage && !hasCreateUsersPrivilege) || (isUserDetailPage && !hasUpdateUsersPrivilege))" type="password" class="form-control" id="password" name="password" placeholder="Password..." />
             </div>
         </div>
 
@@ -31,26 +31,26 @@
         <div class="form-row">
             <div class="form-group col-md-3">
                 <label for="name">Name</label>
-                <input [(ngModel)]="user.name" [disabled]="!hasCreateUsersPrivilege" type="text" class="form-control" id="name" name="name" placeholder="Name..." />
+                <input [(ngModel)]="user.name" [disabled]="((isNewUserPage && !hasCreateUsersPrivilege) || (isUserDetailPage && !hasUpdateUsersPrivilege))" type="text" class="form-control" id="name" name="name" placeholder="Name..." />
             </div>
             <div class="form-group col-md-3">
                 <label for="lastname">LastName</label>
-                <input [(ngModel)]="user.lastname" [disabled]="!hasCreateUsersPrivilege" type="text" class="form-control" id="lastname" name="lastname" placeholder="LastName..." />
+                <input [(ngModel)]="user.lastname" [disabled]="((isNewUserPage && !hasCreateUsersPrivilege) || (isUserDetailPage && !hasUpdateUsersPrivilege))" type="text" class="form-control" id="lastname" name="lastname" placeholder="LastName..." />
             </div>
             <div class="form-group col-md-2">
                 <label for="phone">Phone</label>
-                <input [(ngModel)]="user.phone" [disabled]="!hasCreateUsersPrivilege" type="phone" class="form-control" id="phone" name="phone" placeholder="Phone..." />
+                <input [(ngModel)]="user.phone" [disabled]="((isNewUserPage && !hasCreateUsersPrivilege) || (isUserDetailPage && !hasUpdateUsersPrivilege))" type="phone" class="form-control" id="phone" name="phone" placeholder="Phone..." />
             </div>
             <div class="form-group col-md-4">
                 <label for="address">Address</label>
-                <input [(ngModel)]="user.address" [disabled]="!hasCreateUsersPrivilege" type="address" class="form-control" id="address" name="address" placeholder="Address..." />
+                <input [(ngModel)]="user.address" [disabled]="((isNewUserPage && !hasCreateUsersPrivilege) || (isUserDetailPage && !hasUpdateUsersPrivilege))" type="address" class="form-control" id="address" name="address" placeholder="Address..." />
             </div>
         </div>
 
         <div class="form-row">
             <div class="form-group col">
                 <label for="roles">Roles</label>
-                <select [(ngModel)]="user.roles" [compareWith]="compareRoleDto" [disabled]="!hasCreateUsersPrivilege" class="form-control text-center" name="roles" id="roles" multiple>
+                <select [(ngModel)]="user.roles" [compareWith]="compareRoleDto" [disabled]="((isNewUserPage && !hasCreateUsersPrivilege) || (isUserDetailPage && !hasUpdateUsersPrivilege))" class="form-control text-center" name="roles" id="roles" multiple>
                     <option *ngFor="let role of roles" [ngValue]="role">{{ role.name }}</option> 
                 </select>
             </div>
@@ -59,7 +59,7 @@
         <br>
 
         <hr>
-        <div class="form-row justify-content-center" *ngIf="hasCreateUsersPrivilege">
+        <div class="form-row justify-content-center" *ngIf="((isNewUserPage && hasCreateUsersPrivilege) || (isUserDetailPage && hasUpdateUsersPrivilege))">
             <button type="submit" class="btn btn-primary" (click)="saveUser()">
                 {{ textActionButton }}
             </button>
