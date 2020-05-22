@@ -1,0 +1,51 @@
+<div *ngIf="project" class="row justify-content-center">
+    <form class="col-xs-12 col-md-8 col-lg-6">
+        <hr>
+        <div class="form-row col justify-content-center">
+            <div class="form-group mx-auto my-auto" *ngIf="isProjectDetailPage">
+                <strong class="text-uppercase">Project with ID: {{ project.id }}</strong>
+            </div>
+            <div class="form-group mx-auto my-auto" *ngIf="isNewProjectPage">
+                <strong class="text-uppercase">New Project</strong>
+            </div>
+        </div>
+        <hr>
+        <br>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="title">Title</label>
+                <input [(ngModel)]="project.title" [disabled]="((isNewProjectPage && !hasCreateProjectsPrivilege) || (isProjectDetailPage && !hasUpdateProjectsPrivilege))" type="text" class="form-control" id="title" name="title" placeholder="Title..." />
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="location">Location</label>
+                <input [(ngModel)]="project.location" [disabled]="((isNewProjectPage && !hasCreateProjectsPrivilege) || (isProjectDetailPage && !hasUpdateProjectsPrivilege))" type="text" class="form-control" id="location" name="location" placeholder="Location..." />
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="type">Type</label>
+                <select [(ngModel)]="project.type" [compareWith]="compareProjectTypeDto" [disabled]="((isNewProjectPage && !hasCreateProjectsPrivilege) || (isProjectDetailPage && !hasUpdateProjectsPrivilege))" class="form-control text-center" name="type" id="type">
+                    <option *ngFor="let projectType of projectTypes" [ngValue]="projectType">{{ projectType.name }}</option> 
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="customer">Customer</label>
+                <select [(ngModel)]="project.customer" [compareWith]="compareCustomerDto" [disabled]="((isNewProjectPage && !hasCreateProjectsPrivilege) || (isProjectDetailPage && !hasUpdateProjectsPrivilege))" class="form-control text-center" name="customer" id="customer">
+                    <option *ngFor="let customer of customers" [ngValue]="customer">{{ customer.name }}</option> 
+                </select>
+            </div>
+        </div>
+
+        <br>
+
+        <hr>
+        <div class="form-row justify-content-center" *ngIf="((isNewProjectPage && hasCreateProjectsPrivilege) || (isProjectDetailPage && hasUpdateProjectsPrivilege))">
+            <button type="submit" class="btn btn-primary" (click)="saveProject()">
+                {{ textActionButton }}
+            </button>
+        </div>
+    </form>
+</div>
