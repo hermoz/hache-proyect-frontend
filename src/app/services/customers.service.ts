@@ -41,6 +41,42 @@ export class CustomersService {
     );
   }
 
+  /**
+   * Get proyect by id
+   * @param id
+   */
+  getCustomer(id: number): Observable<CustomerDto> {
+    const url = `${API_CUSTOMERS_ENDPOINT_URL}/${id}`;
+    return this.http.get<CustomerDto>(url)
+      .pipe(
+        tap(customer => console.log(`fetched customer with id ${id}`)),
+        catchError(this.handleError)
+      );
+  }
+
+  /**
+   * Create new customer
+   * @param customer 
+   */
+  createCustomer(customer: CustomerDto): Observable<any> {
+    return this.http.post(API_CUSTOMERS_ENDPOINT_URL, customer, API_HTTP_OPTIONS).pipe(
+      tap(newCustomer => console.log(`customer created successfully: ${newCustomer}`)),
+      catchError(this.handleError)
+    );
+  }
+
+  /**
+   * Update customer
+   * @param customer 
+   */
+  updateCustomer(customer: CustomerDto): Observable<any> {
+    const url = `${API_CUSTOMERS_ENDPOINT_URL}`;
+    return this.http.put(url, customer, API_HTTP_OPTIONS).pipe(
+      tap(updatedCustomer => console.log(`customer updated successfully: ${updatedCustomer}`)),
+      catchError(this.handleError)
+    );
+  }
+
   private handleError(error: HttpErrorResponse) {
     return throwError(error);
   }
