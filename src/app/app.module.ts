@@ -16,6 +16,7 @@ import { UsersDetailComponent } from './components/users-detail/users-detail.com
 import { ProjectsComponent } from './components/projects/projects.component';
 import { CustomersComponent } from './components/customers/customers.component';
 import { ProjectsDetailComponent } from './components/projects-detail/projects-detail.component';
+import { CustomersDetailComponent } from './components/customers-detail/customers-detail.component';
 
 
 @NgModule({
@@ -28,6 +29,8 @@ import { ProjectsDetailComponent } from './components/projects-detail/projects-d
     ProjectsComponent,
     CustomersComponent,
     ProjectsDetailComponent,
+    ProjectsDetailComponent,
+    CustomersDetailComponent
 
   ],
   imports: [

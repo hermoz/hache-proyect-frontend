@@ -7,10 +7,11 @@ import { HomeComponent } from './components/home/home.component';
 import { UsersDetailComponent } from './components/users-detail/users-detail.component';
 import { UsersComponent } from './components/users/users.component';
 import { AuthGuard } from './guards/auth.guard';
-import { READ_USERS, CREATE_USERS, READ_PROJECTS, READ_CUSTOMERS, CREATE_PROJECTS } from './constants';
+import { READ_USERS, CREATE_USERS, READ_PROJECTS, CREATE_CUSTOMERS, READ_CUSTOMERS, CREATE_PROJECTS } from './constants';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { CustomersComponent } from './components/customers/customers.component';
 import { ProjectsDetailComponent } from './components/projects-detail/projects-detail.component';
+import { CustomersDetailComponent } from './components/customers-detail/customers-detail.component';
 
 
 
@@ -59,6 +60,18 @@ const routes: Routes = [
     path: 'customers',
     component: CustomersComponent,
     data: { requiredPrivileges: [ READ_CUSTOMERS ] },
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'customers/new',
+    component: CustomersDetailComponent,
+    data: { requiredPrivileges: [ CREATE_CUSTOMERS ] },
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'customers/:id',
+    component: CustomersDetailComponent,
+    data: { CustomersDetailComponent: [ READ_CUSTOMERS ] },
     canActivate: [AuthGuard]
   },
   // routes that dont exists, we redirect to home
