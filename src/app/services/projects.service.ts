@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { throwError, Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { API_PROJECTS_ENDPOINT_URL, API_HTTP_OPTIONS } from '../constants';
+import { API_PROJECTS_ENDPOINT_URL, API_HTTP_OPTIONS, API_PROJECTS_TYPES_ENDPOINT_URL } from '../constants';
 import { ProjectDto } from '../dtos/project-dto';
+import { ProjectTypeDto } from '../dtos/project-type-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +38,53 @@ export class ProjectsService {
       tap(_ => console.log(`deleted project with id=${id}`)),
       catchError(this.handleError)
     );
+  }
+
+  /**
+   * Get project by id
+   * @param id 
+   */
+  getProject(id: number): Observable<ProjectDto> {
+    const url = `${API_PROJECTS_ENDPOINT_URL}/${id}`;
+    return this.http.get<ProjectDto>(url)
+      .pipe(
+        tap(project => console.log(`fetched project with id ${id}`)),
+        catchError(this.handleError)
+      );
+  }
+
+  /**
+   * Create project
+   * @param project 
+   */
+  createProject(project: ProjectDto): Observable<any> {
+    return this.http.post(API_PROJECTS_ENDPOINT_URL, project, API_HTTP_OPTIONS).pipe(
+      tap(newProject => console.log(`project created successfully: ${newProject}`)),
+      catchError(this.handleError)
+    );
+  }
+
+  /**
+   * Update project
+   * @param project 
+   */
+  updateProject(project: ProjectDto): Observable<any> {
+    const url = `${API_PROJECTS_ENDPOINT_URL}`;
+    return this.http.put(url, project, API_HTTP_OPTIONS).pipe(
+      tap(updatedProject => console.log(`project updated successfully: ${updatedProject}`)),
+      catchError(this.handleError)
+    );
+  }
+
+  /**
+   * Get project type
+   */
+  getProjectTypes(): Observable<any> {
+    return this.http.get<ProjectTypeDto[]>(API_PROJECTS_TYPES_ENDPOINT_URL)
+      .pipe(
+        tap(projectTypes => console.log('fetched projectTypes')),
+        catchError(this.handleError)
+      );
   }
 
   private handleError(error: HttpErrorResponse) {

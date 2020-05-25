@@ -32,7 +32,7 @@ export class CustomersService {
    * Tap to check on console
    * @param id 
    */
-  
+
   deleteCustomer(id: number): Observable<any> {
     const url = `${API_CUSTOMERS_ENDPOINT_URL}/${id}`;
     return this.http.delete<any>(url, API_HTTP_OPTIONS).pipe(
