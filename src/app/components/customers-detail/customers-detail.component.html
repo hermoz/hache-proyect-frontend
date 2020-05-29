@@ -1,0 +1,70 @@
+<div *ngIf="customer" class="row justify-content-center">
+    <form class="col-xs-12 col-md-8 col-lg-6">
+        <hr>
+        <div class="form-row col justify-content-center">
+            <div class="form-group mx-auto my-auto" *ngIf="isCustomerDetailPage">
+                <strong class="text-uppercase">Customer with ID: {{ customer.id }}</strong>
+            </div>
+            <div class="form-group mx-auto my-auto" *ngIf="isNewCustomerPage">
+                <strong class="text-uppercase">New Customer</strong>
+            </div>
+        </div>
+        <hr>
+        <br>
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="name">Name</label>
+                <input [(ngModel)]="customer.name" [disabled]="((isNewCustomerPage && !hasCreateCustomersPrivilege) || (isCustomerDetailPage && !hasUpdateCustomersPrivilege))" type="text" class="form-control" id="name" name="name" placeholder="Name..." />
+            </div>
+
+            <div class="form-group col-md-3">
+                <label for="cif">CIF</label>
+                <input [(ngModel)]="customer.cif" [disabled]="((isNewCustomerPage && !hasCreateCustomersPrivilege) || (isCustomerDetailPage && !hasUpdateCustomersPrivilege))" type="text" class="form-control" id="cif" name="cif" placeholder="CIF..." />
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="email">Email</label>
+                <input [(ngModel)]="customer.email" [disabled]="((isNewCustomerPage && !hasCreateCustomersPrivilege) || (isCustomerDetailPage && !hasUpdateCustomersPrivilege))" type="email" class="form-control" id="email" name="email" placeholder="Email..." />
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="taxResidence">Tax residence</label>
+                <input [(ngModel)]="customer.taxResidence" [disabled]="((isNewCustomerPage && !hasCreateCustomersPrivilege) || (isCustomerDetailPage && !hasUpdateCustomersPrivilege))" type="text" class="form-control" id="taxResidence" name="taxResidence" placeholder="Tax Residence..."
+                />
+            </div>
+
+            <div class="form-group col-md-4">
+                <label for="phone">Phone</label>
+                <input [(ngModel)]="customer.phone" [disabled]="((isNewCustomerPage && !hasCreateCustomersPrivilege) || (isCustomerDetailPage && !hasUpdateCustomersPrivilege))" type="tel" class="form-control" id="phone" name="phone" placeholder="Phone..." />
+            </div>
+
+            <div class="form-group col-md-4">
+                <label for="population">Population</label>
+                <input [(ngModel)]="customer.population" [disabled]="((isNewCustomerPage && !hasCreateCustomersPrivilege) || (isCustomerDetailPage && !hasUpdateCustomersPrivilege))" type="text" class="form-control" id="population" name="population" placeholder="Population..."
+                />
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col">
+                <label for="projects">Projects</label>
+                <select [(ngModel)]="customer.projects" [compareWith]="compareProjectDto" [disabled]="((isNewCustomerPage && !hasCreateCustomersPrivilege) || (isCustomerDetailPage && !hasUpdateCustomersPrivilege))" class="form-control text-center" name="projects" id="projects"
+                    multiple>
+                    <option *ngFor="let project of projects" [ngValue]="project">{{ project.title  }} ::: {{ project.type.name }} :: {{ project.location }}</option> 
+                </select>
+            </div>
+        </div>
+
+        <br>
+
+        <hr>
+        <div class="form-row justify-content-center" *ngIf="((isNewCustomerPage && hasCreateCustomersPrivilege) || (isCustomerDetailPage && hasUpdateCustomersPrivilege))">
+            <button type="submit" class="btn btn-primary" (click)="saveCustomer()">
+                {{ textActionButton }}
+            </button>
+        </div>
+    </form>
+</div>
